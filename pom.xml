@@ -1,0 +1,126 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.twilio</groupId>
+    <artifactId>conq-testing-release-plugin</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <url>http://maven.apache.org</url>
+
+    <scm>
+        <url>https://github.com/IrynaPysarenko/conq.git</url>
+        <connection>scm:git:https://github.com/IrynaPysarenko/conq.git</connection>
+        <developerConnection>scm:git:https://github.com/IrynaPysarenko/conq.git</developerConnection>
+        <tag>{HEAD}</tag>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <resources.plugin.version>3.0.1</resources.plugin.version>
+
+        <!-- plugins -->
+        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+        <java.compiler.version>1.8</java.compiler.version>
+        <surefire.plugin.version>2.19.1</surefire.plugin.version>
+        <maven.jar.plugin.version>3.0.2</maven.jar.plugin.version>
+        <exec.maven.plugin>1.6.0</exec.maven.plugin>
+        <suiteXmlFile>stage/monkey/unit/monkey-adaptor-unit.xml</suiteXmlFile>
+        <aspectj.version>1.8.9</aspectj.version>
+    </properties>
+
+    <distributionManagement>
+        <!-- maven release plugin -->
+        <repository>
+            <id>twilio.nexus.releases</id>
+            <name>twilio.internal.releases</name>
+            <url>https://nexus.corp.twilio.com/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>twilio.nexus.snapshots</id>
+            <name>twilio.internal.snapshots</name>
+            <url>https://nexus.corp.twilio.com/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <site>
+            <id>twilio.nexus</id>
+            <url>https://nexus.corp.twilio.com</url>
+        </site>
+    </distributionManagement>
+
+    <dependencies>
+
+        <!-- Adding Selenium dependency -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>3.141.59</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>resources</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.compiler.version}</source>
+                    <target>${java.compiler.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <goals>deploy</goals>
+                    <!-- During release:perform, enable the "release" profile -->
+                    <!--<releaseProfiles>release</releaseProfiles> <remoteTagging>false</remoteTagging> -->
+                    <checkModificationExcludes>
+                        <!-- <checkModificationExclude>pom.xml</checkModificationExclude> -->
+                    </checkModificationExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>twilio.nexus</id>
+            <url>https://nexus.corp.twilio.com/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>
