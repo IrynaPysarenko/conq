@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.twilio</groupId>
     <artifactId>conq-testing-release-plugin</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>2.0.1</version>
     <packaging>jar</packaging>
 
     <url>http://maven.apache.org</url>
@@ -11,7 +11,7 @@
         <url>https://github.com/IrynaPysarenko/conq.git</url>
         <connection>scm:git:https://github.com/IrynaPysarenko/conq.git</connection>
         <developerConnection>scm:git:https://github.com/IrynaPysarenko/conq.git</developerConnection>
-        <tag>conq-testing-release-plugin-1.0.0</tag>
+        <tag>conq-testing-release-plugin-2.0.1</tag>
     </scm>
 
     <properties>
