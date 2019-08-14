@@ -5,7 +5,7 @@ package xxxlll;
  */
 public class NewApplication {
 
-    public static void main() {
+    public void showSmth() {
         System.out.println("Hey");
     }
 }
